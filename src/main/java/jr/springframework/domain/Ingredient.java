@@ -19,7 +19,7 @@ public class Ingredient {
 
     @ManyToOne
     private Recept recept;
-    
+
     public Long getId() {
         return id;
     }
