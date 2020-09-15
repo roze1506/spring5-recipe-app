@@ -38,6 +38,12 @@ public class Recept {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recept")
     private List<Ingredient> ingredienten = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(name = "recept_categorie",
+    joinColumns = @JoinColumn(name = "recept_id"),
+            inverseJoinColumns = @JoinColumn(name = "categorie_id"))
+    private List<Categorie> categorieen = new ArrayList<>();
+
     public Long getId() {
         return id;
     }
@@ -128,5 +134,17 @@ public class Recept {
 
     public void removeIngredient(Ingredient ingredient) {
         this.ingredienten.remove(ingredient);
+    }
+
+    public List<Categorie> getCategorieen() {
+        return Collections.unmodifiableList(this.categorieen);
+    }
+
+    public void addCategorie(Categorie categorie) {
+        this.categorieen.add(categorie);
+    }
+
+    public void removeCategorie(Categorie categorie) {
+        this.categorieen.remove(categorie);
     }
 }
