@@ -14,6 +14,13 @@ public class Notitie {
     @OneToOne
     private Recept recept;
 
+    public Notitie() {}
+
+    public Notitie(String tekst, Recept recept) {
+        this.tekst = tekst;
+        this.recept = recept;
+    }
+
     public Long getId() {
         return id;
     }

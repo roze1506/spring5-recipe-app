@@ -17,6 +17,12 @@ public class Categorie {
     @ManyToMany(mappedBy = "categorieen")
     private List<Recept> recepten = new ArrayList<>();
 
+    public Categorie() {}
+
+    public Categorie(String afdelingNaam) {
+        this.afdelingNaam = afdelingNaam;
+    }
+
     public Long getId() {
         return id;
     }

@@ -6,5 +6,50 @@
 </head>
 <body>
     <h1>Mijn Recepten!</h1>
+    <table>
+        <tr><h3>Algemene beschrijving</h3></tr>
+        <tr>
+            <th style="border: solid black 5px;">Omschrijving</th>
+            <th style="border: solid black 5px;">Kooktijd (in minuten)</th>
+            <th style="border: solid black 5px;">Aantal porties</th>
+            <th style="border: solid black 5px;">Bron</th>
+            <th style="border: solid black 5px;">Url</th>
+            <th style="border: solid black 5px;">Aanwijzingen</th>
+        </tr>
+        <tr th:each="recept : ${recepten}">
+            <td style="border: solid black 2px;" th:text="${recept.omschrijving}"></td>
+            <td style="border: solid black 2px;" th:text="${recept.kookTijd}"></td>
+            <td style="border: solid black 2px;" th:text="${recept.porties}"></td>
+            <td style="border: solid black 2px;" th:text="${recept.bron}"></td>
+            <td style="border: solid black 2px;" th:text="${recept.url}"></td>
+            <td style="border: solid black 2px;" th:text="${recept.aanwijzingen}"></td>
+            <table>
+                <tr>
+                    <th><h3>Ingredienten</h3></th>
+                </tr>
+                <tr>
+                    <th style="border: solid black 5px;">Beschrijving</th>
+                    <th style="border: solid black 5px;">Aantal</th>
+                    <th style="border: solid black 5px;">Maateenheid</th>
+                </tr>
+                <tr th:each="ingredient : ${recept.ingredienten}">
+                    <td style="border: solid black 2px;" th:text="${ingredient.beschrijving}"></td>
+                    <td style="border: solid black 2px;" th:text="${ingredient.aantal}"></td>
+                    <td style="border: solid black 2px;" th:text="${ingredient.maatEenheid.eenheid}"></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th><h3>Notities</h3></th>
+                </tr>
+                <tr>
+                    <th style="border: solid black 5px;">Tekst</th>
+                </tr>
+                <tr th:each="notitie : ${recept.notitie}">
+                    <td style="border: solid black 2px;" th:text="${notitie.tekst}"></td>
+                </tr>
+            </table>
+        </tr>
+    </table>
 </body>
 </html>

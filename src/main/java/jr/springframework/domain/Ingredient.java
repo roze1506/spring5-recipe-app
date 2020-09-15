@@ -14,11 +14,20 @@ public class Ingredient {
 
     private BigDecimal aantal;
 
-    @OneToOne
+    @ManyToOne
     private MaatEenheid maatEenheid;
 
     @ManyToOne
     private Recept recept;
+
+    public Ingredient() {}
+
+    public Ingredient(String beschrijving, BigDecimal aantal, MaatEenheid maatEenheid, Recept recept) {
+        this.beschrijving = beschrijving;
+        this.aantal = aantal;
+        this.maatEenheid = maatEenheid;
+        this.recept = recept;
+    }
 
     public Long getId() {
         return id;

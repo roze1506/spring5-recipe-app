@@ -44,6 +44,20 @@ public class Recept {
             inverseJoinColumns = @JoinColumn(name = "categorie_id"))
     private List<Categorie> categorieen = new ArrayList<>();
 
+    public Recept() {}
+
+    public Recept(String omschrijving, Integer kookTijd, Integer porties, String bron, String url,
+                  String aanwijzingen, Moeilijkheidsgraad moeilijkheidsgraad, Notitie notitie) {
+        this.omschrijving = omschrijving;
+        this.kookTijd = kookTijd;
+        this.porties = porties;
+        this.bron = bron;
+        this.url = url;
+        this.aanwijzingen = aanwijzingen;
+        this.moeilijkheidsgraad = moeilijkheidsgraad;
+        this.notitie = notitie;
+    }
+
     public Long getId() {
         return id;
     }

@@ -4,7 +4,10 @@ import jr.springframework.domain.Categorie;
 import jr.springframework.domain.MaatEenheid;
 import jr.springframework.repositories.CategorieRepository;
 import jr.springframework.repositories.MaatEenheidRepository;
+import jr.springframework.repositories.ReceptRepository;
+import jr.springframework.services.ReceptService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
@@ -12,22 +15,17 @@ import java.util.Optional;
 @Controller
 public class IndexController {
 
-    private CategorieRepository categorieRepository;
-    private MaatEenheidRepository maatEenheidRepository;
+    private final ReceptRepository receptRepository;
+    private final ReceptService receptService;
 
-    public IndexController(CategorieRepository categorieRepository, MaatEenheidRepository maatEenheidRepository) {
-        this.categorieRepository = categorieRepository;
-        this.maatEenheidRepository = maatEenheidRepository;
+    public IndexController(ReceptRepository receptRepository, ReceptService receptService) {
+        this.receptRepository = receptRepository;
+        this.receptService = receptService;
     }
 
     @RequestMapping({"", "/", "/index"})
-    public String geefIndexPaginaTerug() {
-        final Optional<Categorie> categorieOptional = categorieRepository.findByAfdelingNaam("Pasta");
-        final Optional<MaatEenheid> maatEenheidOptional = maatEenheidRepository.findByEenheid("Gram");
-        if(categorieOptional.isPresent() && maatEenheidOptional.isPresent()) {
-            System.out.println("ID van Categorie 'Pasta': " + categorieOptional.get().getId());
-            System.out.println("ID van MaatEenheid 'Gram': " + maatEenheidOptional.get().getId());
-        }
+    public String geefIndexPaginaTerug(Model model) {
+        model.addAttribute("recepten", receptService.krijgAlleRecepten());
         return "index";
     }
 }
