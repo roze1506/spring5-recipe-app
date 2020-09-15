@@ -1,5 +1,7 @@
 package jr.springframework.domain;
 
+import jr.springframework.enums.Moeilijkheidsgraad;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +28,9 @@ public class Recept {
 
     @Lob
     private Byte[] afbeelding;
+
+    @Enumerated(value = EnumType.STRING)
+    private Moeilijkheidsgraad moeilijkheidsgraad;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Notitie notitie;
@@ -95,6 +100,14 @@ public class Recept {
 
     public void setAfbeelding(Byte[] afbeelding) {
         this.afbeelding = afbeelding;
+    }
+
+    public Moeilijkheidsgraad getMoeilijkheidsgraad() {
+        return moeilijkheidsgraad;
+    }
+
+    public void setMoeilijkheidsgraad(Moeilijkheidsgraad moeilijkheidsgraad) {
+        this.moeilijkheidsgraad = moeilijkheidsgraad;
     }
 
     public Notitie getNotitie() {
