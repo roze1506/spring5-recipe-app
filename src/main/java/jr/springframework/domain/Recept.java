@@ -24,6 +24,7 @@ public class Recept {
 
     private String url;
 
+    @Lob
     private String aanwijzingen;
 
     @Lob

@@ -44,10 +44,15 @@ public class BootStrapData implements CommandLineRunner {
         notitieRepository.save(nmkNotitie);
         noodlesMetKipRecept.setNotitie(nmkNotitie);
         this.initIngredienten(noodlesMetKipRecept);
-        noodlesMetKipRecept.setAanwijzingen("1) First this. \n" +
-                "2) Then that. \n" +
-                "3) Finally add this. \n" +
-                "4) Enjoy! :)");
+        noodlesMetKipRecept.setAanwijzingen("1) Verhit een wok zonder olie of boter en rooster de cashewnoten 3 min." +
+                "Doe ze op een bord en laat afkoelen." +
+                "Verhit 1 el zonnebloemolie in een koekenpan en bak de kip in 15 min. rondom gaar. \n" +
+                "2) Kook intussen de noodles volgens de aanwijzingen op de verpakking. \n" +
+                " Snijd de bosuitjes in ringetjes. Verhit 1 el zonnebloemolie in de wok en roerbak de groenten met twee derde van de bosui in 5 min. /n" +
+                " beetgaar. Breng op smaak met 1 el teriyaki saus. \n" +
+                "3) Voeg de rest van de saus toe aan de kip en laat 2 min. karamelliseren. Schep er de cashewnoten door en warm 1 min. mee. \n" +
+                "4) Verdeel de noodles en groenten over 4 kommen. Schep er de kipkluifjes met de cashewnoten en saus op. \n" +
+                " Garneer met de rest van de bosui.");
         final Categorie pasta = categorieRepository.findByAfdelingNaam("Pasta").get();
         categorieRepository.save(pasta);
         receptRepository.save(noodlesMetKipRecept);
