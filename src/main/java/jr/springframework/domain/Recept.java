@@ -1,6 +1,9 @@
 package jr.springframework.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 public class Recept {
@@ -27,6 +30,8 @@ public class Recept {
     @OneToOne(cascade = CascadeType.ALL)
     private Notitie notitie;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recept")
+    private List<Ingredient> ingredienten = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -98,5 +103,17 @@ public class Recept {
 
     public void setNotitie(Notitie notitie) {
         this.notitie = notitie;
+    }
+
+    public List<Ingredient> getIngredienten() {
+        return Collections.unmodifiableList(this.ingredienten);
+    }
+
+    public void addIngredient(Ingredient ingredient) {
+        this.ingredienten.add(ingredient);
+    }
+
+    public void removeIngredient(Ingredient ingredient) {
+        this.ingredienten.remove(ingredient);
     }
 }
