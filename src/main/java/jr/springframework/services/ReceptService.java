@@ -16,7 +16,7 @@ public class ReceptService {
     private final ReceptRepository receptRepository;
 
     public List<Recept> krijgAlleRecepten() {
-        log.debug("ReceptService up and running! :D")
+        log.debug("ReceptService up and running! :D");
         return receptRepository.findAll();
     }
 }
