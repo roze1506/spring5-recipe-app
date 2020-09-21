@@ -1,11 +1,17 @@
 package jr.springframework.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@Data
 public class Categorie {
 
     @Id
@@ -17,30 +23,8 @@ public class Categorie {
     @ManyToMany(mappedBy = "categorieen")
     private List<Recept> recepten = new ArrayList<>();
 
-    public Categorie() {}
-
     public Categorie(String afdelingNaam) {
         this.afdelingNaam = afdelingNaam;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getAfdelingNaam() {
-        return afdelingNaam;
-    }
-
-    public void setAfdelingNaam(String afdelingNaam) {
-        this.afdelingNaam = afdelingNaam;
-    }
-
-    public List<Recept> getRecepten() {
-        return Collections.unmodifiableList(this.recepten);
     }
 
     public void addRecept(Recept recept) {

@@ -1,6 +1,8 @@
 package jr.springframework.domain;
 
 import jr.springframework.enums.Moeilijkheidsgraad;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,6 +10,8 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@Data
 public class Recept {
 
     @Id
@@ -45,8 +49,6 @@ public class Recept {
             inverseJoinColumns = @JoinColumn(name = "categorie_id"))
     private List<Categorie> categorieen = new ArrayList<>();
 
-    public Recept() {}
-
     public Recept(String omschrijving, Integer kookTijd, Integer porties, String bron, String url,
                   String aanwijzingen, Moeilijkheidsgraad moeilijkheidsgraad, Notitie notitie) {
         this.omschrijving = omschrijving;
@@ -56,86 +58,6 @@ public class Recept {
         this.url = url;
         this.aanwijzingen = aanwijzingen;
         this.moeilijkheidsgraad = moeilijkheidsgraad;
-        this.notitie = notitie;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getOmschrijving() {
-        return omschrijving;
-    }
-
-    public void setOmschrijving(String omschrijving) {
-        this.omschrijving = omschrijving;
-    }
-
-    public Integer getKookTijd() {
-        return kookTijd;
-    }
-
-    public void setKookTijd(Integer kookTijd) {
-        this.kookTijd = kookTijd;
-    }
-
-    public Integer getPorties() {
-        return porties;
-    }
-
-    public void setPorties(Integer porties) {
-        this.porties = porties;
-    }
-
-    public String getBron() {
-        return bron;
-    }
-
-    public void setBron(String bron) {
-        this.bron = bron;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getAanwijzingen() {
-        return aanwijzingen;
-    }
-
-    public void setAanwijzingen(String aanwijzingen) {
-        this.aanwijzingen = aanwijzingen;
-    }
-
-    public Byte[] getAfbeelding() {
-        return afbeelding;
-    }
-
-    public void setAfbeelding(Byte[] afbeelding) {
-        this.afbeelding = afbeelding;
-    }
-
-    public Moeilijkheidsgraad getMoeilijkheidsgraad() {
-        return moeilijkheidsgraad;
-    }
-
-    public void setMoeilijkheidsgraad(Moeilijkheidsgraad moeilijkheidsgraad) {
-        this.moeilijkheidsgraad = moeilijkheidsgraad;
-    }
-
-    public Notitie getNotitie() {
-        return notitie;
-    }
-
-    public void setNotitie(Notitie notitie) {
         this.notitie = notitie;
     }
 

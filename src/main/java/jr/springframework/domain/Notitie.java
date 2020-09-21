@@ -1,8 +1,13 @@
 package jr.springframework.domain;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
+@Data
 public class Notitie {
 
     @Id
@@ -14,34 +19,8 @@ public class Notitie {
     @OneToOne
     private Recept recept;
 
-    public Notitie() {}
-
     public Notitie(String tekst, Recept recept) {
         this.tekst = tekst;
-        this.recept = recept;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTekst() {
-        return tekst;
-    }
-
-    public void setTekst(String tekst) {
-        this.tekst = tekst;
-    }
-
-    public Recept getRecept() {
-        return recept;
-    }
-
-    public void setRecept(Recept recept) {
         this.recept = recept;
     }
 }

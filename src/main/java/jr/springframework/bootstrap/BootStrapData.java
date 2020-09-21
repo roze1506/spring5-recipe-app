@@ -3,6 +3,8 @@ package jr.springframework.bootstrap;
 import jr.springframework.domain.*;
 import jr.springframework.enums.Moeilijkheidsgraad;
 import jr.springframework.repositories.*;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +12,8 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
+@Slf4j
 public class BootStrapData implements CommandLineRunner {
 
     private final CategorieRepository categorieRepository;
@@ -18,18 +22,9 @@ public class BootStrapData implements CommandLineRunner {
     private final NotitieRepository notitieRepository;
     private final ReceptRepository receptRepository;
 
-    public BootStrapData(CategorieRepository categorieRepository, IngredientRepository ingredientRepository,
-                         MaatEenheidRepository maatEenheidRepository, NotitieRepository notitieRepository,
-                         ReceptRepository receptRepository) {
-        this.categorieRepository = categorieRepository;
-        this.ingredientRepository = ingredientRepository;
-        this.maatEenheidRepository = maatEenheidRepository;
-        this.notitieRepository = notitieRepository;
-        this.receptRepository = receptRepository;
-    }
-
     @Override
     public void run(String... args) throws Exception {
+        log.debug("Voor het definiëren van data.");
         final Recept noodlesMetKipRecept = new Recept();
         noodlesMetKipRecept.setOmschrijving("Sticky kipkluifjes met noodles");
         noodlesMetKipRecept.setKookTijd(25);
@@ -38,11 +33,13 @@ public class BootStrapData implements CommandLineRunner {
         noodlesMetKipRecept.setUrl("https://www.jumbo.com/recepten/sticky-kipkluifjes-met-noodles-504727");
         noodlesMetKipRecept.setMoeilijkheidsgraad(Moeilijkheidsgraad.MAKKELIJK);
         receptRepository.save(noodlesMetKipRecept);
+        log.debug("Noodles met Kip recept opgeslagen in de Recepten tabel!");
         final Notitie nmkNotitie = new Notitie();
         nmkNotitie.setTekst("Dit is super lekker!");
         nmkNotitie.setRecept(noodlesMetKipRecept);
         notitieRepository.save(nmkNotitie);
         noodlesMetKipRecept.setNotitie(nmkNotitie);
+        log.debug("Notitie toegevoegd aan Noodles met Kip Recept!");
         this.initIngredienten(noodlesMetKipRecept);
         noodlesMetKipRecept.setAanwijzingen("1) Verhit een wok zonder olie of boter en rooster de cashewnoten 3 min." +
                 "Doe ze op een bord en laat afkoelen." +
@@ -53,9 +50,11 @@ public class BootStrapData implements CommandLineRunner {
                 "3) Voeg de rest van de saus toe aan de kip en laat 2 min. karamelliseren. Schep er de cashewnoten door en warm 1 min. mee. \n" +
                 "4) Verdeel de noodles en groenten over 4 kommen. Schep er de kipkluifjes met de cashewnoten en saus op. \n" +
                 " Garneer met de rest van de bosui.");
+        log.debug("De aanwijzingen van hoe het Noodles met Kip recept klaargemaakt moet worden is toegevoegd!");
         final Categorie pasta = categorieRepository.findByAfdelingNaam("Pasta").get();
         categorieRepository.save(pasta);
         receptRepository.save(noodlesMetKipRecept);
+        log.debug("Het Noodles met Kip Recept behoort tot de categorie Pasta!");
     }
 
     private void initIngredienten(Recept recept) {
@@ -89,5 +88,6 @@ public class BootStrapData implements CommandLineRunner {
         maatEenheidRepository.save(aantal);
         maatEenheidRepository.save(milliLiter);
         receptRepository.save(recept);
+        log.debug("Alle ingrediënten en bijbehorende maateenheden zijn toegekend aan het Noodles met Kip Recept!");
     }
 }

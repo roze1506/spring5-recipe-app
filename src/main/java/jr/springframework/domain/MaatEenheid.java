@@ -1,11 +1,16 @@
 package jr.springframework.domain;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@Data
 public class MaatEenheid {
 
     @Id
@@ -17,25 +22,7 @@ public class MaatEenheid {
     @OneToMany(mappedBy = "maatEenheid")
     private List<Ingredient> ingredienten = new ArrayList<>();
 
-    public MaatEenheid() {}
-
     public MaatEenheid(String eenheid) {
-        this.eenheid = eenheid;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEenheid() {
-        return eenheid;
-    }
-
-    public void setEenheid(String eenheid) {
         this.eenheid = eenheid;
     }
 
