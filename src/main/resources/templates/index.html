@@ -3,53 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Recepten Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous">
+    </script>
 </head>
 <body>
-    <h1>Mijn Recepten!</h1>
-    <table>
-        <tr><h3>Algemene beschrijving</h3></tr>
-        <tr>
-            <th style="border: solid black 5px;">Omschrijving</th>
-            <th style="border: solid black 5px;">Kooktijd (in minuten)</th>
-            <th style="border: solid black 5px;">Aantal porties</th>
-            <th style="border: solid black 5px;">Bron</th>
-            <th style="border: solid black 5px;">Url</th>
-            <th style="border: solid black 5px;">Aanwijzingen</th>
-        </tr>
-        <tr th:each="recept : ${recepten}">
-            <td style="border: solid black 2px;" th:text="${recept.omschrijving}"></td>
-            <td style="border: solid black 2px;" th:text="${recept.kookTijd}"></td>
-            <td style="border: solid black 2px;" th:text="${recept.porties}"></td>
-            <td style="border: solid black 2px;" th:text="${recept.bron}"></td>
-            <td style="border: solid black 2px;" th:text="${recept.url}"></td>
-            <td style="border: solid black 2px;" th:text="${recept.aanwijzingen}"></td>
-            <table>
+<div class="container-fluid">
+    <div class="col-md-6-col-offset-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1>Mijn Recepten!</h1>
+            </div>
+            <table class="table table-hover">
+                <tr><h3>Algemene beschrijving</h3></tr>
                 <tr>
-                    <th><h3>Ingredienten</h3></th>
-                </tr>
-                <tr>
-                    <th style="border: solid black 5px;">Beschrijving</th>
-                    <th style="border: solid black 5px;">Aantal</th>
-                    <th style="border: solid black 5px;">Maateenheid</th>
-                </tr>
-                <tr th:each="ingredient : ${recept.ingredienten}">
-                    <td style="border: solid black 2px;" th:text="${ingredient.beschrijving}"></td>
-                    <td style="border: solid black 2px;" th:text="${ingredient.aantal}"></td>
-                    <td style="border: solid black 2px;" th:text="${ingredient.maatEenheid.eenheid}"></td>
+                    <th style="border: solid black 5px;">Omschrijving</th>
+                    <th style="border: solid black 5px;">Kooktijd (in minuten)</th>
+                    <th style="border: solid black 5px;">Aantal porties</th>
+                <th style="border: solid black 5px;">Bron</th>
+                <th style="border: solid black 5px;">Url</th>
+                <th style="border: solid black 5px;">Aanwijzingen</th>
+            </tr>
+            <tr th:each="recept : ${recepten}">
+                <td style="border: solid black 2px;" th:text="${recept.omschrijving}"></td>
+                <td style="border: solid black 2px;" th:text="${recept.kookTijd}"></td>
+                <td style="border: solid black 2px;" th:text="${recept.porties}"></td>
+                <td style="border: solid black 2px;" th:text="${recept.bron}"></td>
+                <td style="border: solid black 2px;" th:text="${recept.url}"></td>
+                <td style="border: solid black 2px;" th:text="${recept.aanwijzingen}"></td>
+                <table class="table table-hover">
+                    <tr>
+                        <th><h3>Ingredienten</h3></th>
+                    </tr>
+                    <tr>
+                        <th style="border: solid black 5px;">Beschrijving</th>
+                        <th style="border: solid black 5px;">Aantal</th>
+                        <th style="border: solid black 5px;">Maateenheid</th>
+                    </tr>
+                    <tr th:each="ingredient : ${recept.ingredienten}">
+                        <td style="border: solid black 2px;" th:text="${ingredient.beschrijving}"></td>
+                        <td style="border: solid black 2px;" th:text="${ingredient.aantal}"></td>
+                        <td style="border: solid black 2px;" th:text="${ingredient.maatEenheid.eenheid}"></td>
+                    </tr>
+                </table>
+                <table class="table table-hover">
+                    <tr>
+                        <th><h3>Notities</h3></th>
+                    </tr>
+                    <tr>
+                        <th style="border: solid black 5px;">Tekst</th>
+                    </tr>
+                    <tr th:each="notitie : ${recept.notitie}">
+                        <td style="border: solid black 2px;" th:text="${notitie.tekst}"></td>
+                    </tr>
+                </table>
                 </tr>
             </table>
-            <table>
-                <tr>
-                    <th><h3>Notities</h3></th>
-                </tr>
-                <tr>
-                    <th style="border: solid black 5px;">Tekst</th>
-                </tr>
-                <tr th:each="notitie : ${recept.notitie}">
-                    <td style="border: solid black 2px;" th:text="${notitie.tekst}"></td>
-                </tr>
-            </table>
-        </tr>
-    </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>
