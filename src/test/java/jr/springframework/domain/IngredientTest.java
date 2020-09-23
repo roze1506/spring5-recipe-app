@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 public class IngredientTest {
 
     private Ingredient ingredient;
@@ -31,6 +33,17 @@ public class IngredientTest {
         final String resultaat = ingredient.getBeschrijving();
         // Verify
         Assertions.assertThat(resultaat).isEqualTo("TESTBESCHRIJVING");
+    }
+
+    @Test
+    public void testGetEnSetAantal() {
+        // Prepare
+        final BigDecimal testAantal = BigDecimal.valueOf(5L);
+        ingredient.setAantal(testAantal);
+        // Execute
+        final BigDecimal resultaat = ingredient.getAantal();
+        // Verify
+        Assertions.assertThat(resultaat).isEqualTo(testAantal);
     }
 
     @Test
