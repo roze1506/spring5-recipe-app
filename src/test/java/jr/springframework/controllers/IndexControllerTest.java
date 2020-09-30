@@ -1,7 +1,6 @@
 package jr.springframework.controllers;
 
 import jr.springframework.domain.Recept;
-import jr.springframework.repositories.ReceptRepository;
 import jr.springframework.services.ReceptService;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -11,6 +10,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
@@ -24,6 +28,14 @@ public class IndexControllerTest {
 
     @InjectMocks
     private IndexController indexController;
+
+    @Test
+    public void testIndexPaginaRequest() throws Exception {
+        final MockMvc mockMvc = MockMvcBuilders.standaloneSetup(indexController).build();
+        mockMvc.perform(MockMvcRequestBuilders.get("/"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("index"));
+    }
 
     @Test
     public void testGeefIndexPaginaTerug() {
