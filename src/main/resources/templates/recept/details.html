@@ -41,6 +41,19 @@
                 <div class="row">
                     <table class="table table-hover">
                         <tr>
+                            <th><h3>Categorieën</h3></th>
+                        </tr>
+                        <tr>
+                            <th style="border: solid black 5px;">Afdeling Naam</th>
+                        </tr>
+                        <tr th:each="categorie : ${recept.categorieen}">
+                            <td style="border: solid black 2px;" th:text="${categorie.afdelingNaam}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <table class="table table-hover">
+                        <tr>
                             <th><h3>Ingredienten</h3></th>
                         </tr>
                         <tr>

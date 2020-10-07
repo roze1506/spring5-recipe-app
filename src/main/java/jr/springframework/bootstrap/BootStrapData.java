@@ -53,6 +53,7 @@ public class BootStrapData implements CommandLineRunner {
         log.debug("De aanwijzingen van hoe het Noodles met Kip recept klaargemaakt moet worden is toegevoegd!");
         final Categorie pasta = categorieRepository.findByAfdelingNaam("Pasta").get();
         categorieRepository.save(pasta);
+        noodlesMetKipRecept.addCategorie(pasta);
         receptRepository.save(noodlesMetKipRecept);
         log.debug("Het Noodles met Kip Recept behoort tot de categorie Pasta!");
     }
