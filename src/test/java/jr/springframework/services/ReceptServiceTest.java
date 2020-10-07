@@ -12,6 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ReceptServiceTest {
@@ -35,5 +36,18 @@ public class ReceptServiceTest {
         Assertions.assertThat(resultaat).hasSize(1);
         Assertions.assertThat(resultaat).contains(testRecept);
         Assertions.assertThat(resultaat).isEqualTo(testRecepten);
+    }
+
+    @Test
+    public void testKrijgRecept() {
+        // Prepare
+        final Long testId = 5L;
+        final Recept testRecept = new Recept();
+        testRecept.setId(testId);
+        Mockito.when(receptRepository.findById(testId)).thenReturn(Optional.of(testRecept));
+        // Execute
+        final Recept resultaat = receptService.krijgRecept(testId);
+        // Verify
+        Assertions.assertThat(resultaat).isEqualTo(testRecept);
     }
 }

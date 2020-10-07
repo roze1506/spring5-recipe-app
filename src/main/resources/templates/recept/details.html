@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recept</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="col-md-6-col-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-group">
+                    <div class="panel-heading" style="border-style: solid">
+                        <h1 class="panel-title" th:text="${recept.omschrijving}"></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <table class="table table-hover">
+                        <tr>
+                            <th style="border: solid black 5px;">Kooktijd (in minuten)</th>
+                            <th style="border: solid black 5px;">Aantal porties</th>
+                            <th style="border: solid black 5px;">Bron</th>
+                            <th style="border: solid black 5px;">Url</th>
+                        </tr>
+                        <tr>
+                            <td style="border: solid black 2px;" th:text="${recept.kookTijd}"></td>
+                            <td style="border: solid black 2px;" th:text="${recept.porties}"></td>
+                            <td style="border: solid black 2px;" th:text="${recept.bron}"></td>
+                            <td style="border: solid black 2px;" th:text="${recept.url}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <table class="table table-hover">
+                        <tr>
+                            <th><h3>Ingredienten</h3></th>
+                        </tr>
+                        <tr>
+                            <th style="border: solid black 5px;">Beschrijving</th>
+                            <th style="border: solid black 5px;">Aantal</th>
+                            <th style="border: solid black 5px;">Maateenheid</th>
+                        </tr>
+                        <tr th:each="ingredient : ${recept.ingredienten}">
+                            <td style="border: solid black 2px;" th:text="${ingredient.beschrijving}"></td>
+                            <td style="border: solid black 2px;" th:text="${ingredient.aantal}"></td>
+                            <td style="border: solid black 2px;" th:text="${ingredient.maatEenheid.eenheid}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="panel panel-primary">
+                        <div class="panel-group">
+                            <div class="panel-heading" style="border-style: solid">
+                                <h5><strong>Aanwijzingen:</strong></h5>
+                                <h5 class="panel-title" th:text="${recept.aanwijzingen}"></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table table-hover">
+                        <tr>
+                            <th><h3>Notities</h3></th>
+                        </tr>
+                        <tr>
+                            <th style="border: solid black 5px;">Tekst</th>
+                        </tr>
+                        <tr th:each="notitie : ${recept.notitie}">
+                            <td style="border: solid black 2px;" th:text="${notitie.tekst}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
