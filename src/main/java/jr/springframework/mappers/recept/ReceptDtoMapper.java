@@ -6,7 +6,9 @@ import jr.springframework.mappers.categorie.CategorieDtoMapper;
 import jr.springframework.mappers.ingredient.IngredientDtoMapper;
 import jr.springframework.mappers.notitie.NotitieDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ReceptDtoMapper {
 
     @Autowired
@@ -25,6 +27,7 @@ public class ReceptDtoMapper {
         receptDto.setMoeilijkheidsgraad(recept.getMoeilijkheidsgraad().name());
         receptDto.setAanwijzingen(recept.getAanwijzingen());
         receptDto.setBron(recept.getBron());
+        receptDto.setUrl(recept.getUrl());
         receptDto.setNotitie(notitieDtoMapper.transform(recept.getNotitie()));
         recept.getIngredienten().stream()
                 .map(ingredientDtoMapper::transform)

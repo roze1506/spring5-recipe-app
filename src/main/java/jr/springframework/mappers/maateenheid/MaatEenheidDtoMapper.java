@@ -4,7 +4,9 @@ import jr.springframework.domain.MaatEenheid;
 import jr.springframework.dtos.MaatEenheidDto;
 import jr.springframework.mappers.ingredient.IngredientDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MaatEenheidDtoMapper {
 
     @Autowired

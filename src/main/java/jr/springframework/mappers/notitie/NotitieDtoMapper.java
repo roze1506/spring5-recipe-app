@@ -4,7 +4,9 @@ import jr.springframework.domain.Notitie;
 import jr.springframework.dtos.NotitieDto;
 import jr.springframework.mappers.recept.ReceptDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class NotitieDtoMapper {
 
     @Autowired

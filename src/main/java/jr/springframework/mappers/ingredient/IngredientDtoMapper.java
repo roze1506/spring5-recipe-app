@@ -5,7 +5,9 @@ import jr.springframework.dtos.IngredientDto;
 import jr.springframework.mappers.maateenheid.MaatEenheidDtoMapper;
 import jr.springframework.mappers.recept.ReceptDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class IngredientDtoMapper {
 
     @Autowired
